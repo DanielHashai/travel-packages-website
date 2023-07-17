@@ -8,32 +8,22 @@
     <link rel="stylesheet" href="./style.css" />
     <title>book</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    
+
 </head>
+
 
 <body>
 
-
-
     <section class="header">
-
         <a href="home.php" class="logo">travel</a>
-
         <nav class="navbar">
             <a href="home.php">home</a>
             <a href="about.php">about</a>
-            
             <a href="book.php">book</a>
-            <a href="logout.php" >logout</a>
+            <a href="logout.php">logout</a>
         </nav>
-
         <div id="menu-btn" class="fas fa-bars"></div>
-
-
-
     </section>
-
-
 
     <div class="heading" style="background:url(./assets/pexels-photo-310435.jpeg) no-repeat">
         <h1>book</h1>
@@ -53,7 +43,7 @@
                 </div>
                 <div class="inputBox">
                     <span>phone</span>
-                    <input type="number" placeholder="enter your number" name="phone">
+                    <input type="number" placeholder="enter your number" name="phone" min=0>
                 </div>
                 <div class="inputBox">
                     <span>address</span>
@@ -65,7 +55,7 @@
                 </div>
                 <div class="inputBox">
                     <span>how many</span>
-                    <input type="number" placeholder="number of guests" name="guests">
+                    <input type="number" placeholder="number of guests" name="guests" min=0>
                 </div>
                 <div class="inputBox">
                     <span>arrivals</span>
@@ -73,14 +63,40 @@
                 </div>
                 <div class="inputBox">
                     <span>leaving</span>
-                    <input type="date" name="leaving">
+                    <input type="date" name="leaving" id="leaving-date">
                 </div>
             </div>
             <div style="display: flex; justify-content:center; align-items:center;">
-                <input style="text-align: center; border-radius:10px;width:80%;" type=" submit" value="submit" class="btn" name="send">
+                <input style="text-align: center; border-radius:10px;width:80%;" type="submit" value="submit" class="btn" name="send">
             </div>
         </form>
-
     </section>
+
+    <script>
+        // Get the input element
+        var input = document.getElementById('leaving-date');
+
+        // Get the current date
+        var today = new Date().toISOString().split('T')[0];
+
+        // Set the minimum attribute to today's date
+        input.setAttribute('min', today);
+
+        // Add an event listener to handle date changes
+        input.addEventListener('input', function() {
+            // Get the selected date from the input
+            var selectedDate = new Date(this.value);
+
+            // Compare the selected date with today's date
+            if (selectedDate < new Date(today)) {
+                // Clear the value if it's a previous date
+                this.value = '';
+            }
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="./js//script.js"></script>
+</body>
+
+</html>
